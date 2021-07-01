@@ -1,0 +1,1 @@
+name = input(float(("Enter the number: "))
