@@ -4,13 +4,7 @@ num_2 = input("Enter the number2: ")
 
 try:
     num_1 = float(num_1)
-except Exception as e:
-    print(e)
-    exit()
-
-if num_1.isdigit() and num_2.isdigit():
-    num_1 = int(num_1)
-    num_2 = int(num_2)
+    num_2 = float(num_2)
     if operator == "-":
         a=num_1-num_2
         print(a)
@@ -24,6 +18,7 @@ if num_1.isdigit() and num_2.isdigit():
         a=num_1/num_2
         print(a)
     else:
-        print("Incorrect operator")
-else:
-    print("Please print integer")
+        print("Please correct the inputed operator")
+except Exception as e:
+    print("Please correct the inputed numbers")
+    exit()
