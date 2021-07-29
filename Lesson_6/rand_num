@@ -2,7 +2,7 @@ import random
 
 #range from 0 to a
 
-a = int(input("Please enter the last number in range from 0: "))
+a = int(input("Please enter the first number in range from: "))
 b = int(input("Please enter the last number in range from 0: "))
 
 def rand_list(a,b):
