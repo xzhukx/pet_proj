@@ -1,11 +1,20 @@
-def rand_lists(chet,nechet):
+import random
+
+#range from 0 to a
+
+a = int(input("Please enter the last number in range from 0: "))
+b = int(input("Please enter the last number in range from 0: "))
+
+def rand_list(a,b):
     chet=[]
     nechet=[]
-    a=input("range stats from")
-    b=input("add last number")
-    for i in range(randint(a,b)):
-        if i % 2 == 0:
-            chet.append(i)
+    for i in range(a,b):
+        if a % 2 == 0:
+            chet.append(a)
         else:
-            nechet.append(i)
+            nechet.append(a)
+        i += 1
+        a=a+1
     print(chet,nechet)
+
+rand_list(a,b)
