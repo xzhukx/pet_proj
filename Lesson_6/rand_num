@@ -14,7 +14,7 @@ def rand_list(a,b):
         else:
             nechet.append(a)
         i += 1
-        a=a+1
+        a = a+1
     print(chet,nechet)
 
 rand_list(a,b)

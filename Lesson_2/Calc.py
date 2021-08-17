@@ -36,6 +36,4 @@ def calculation(operator,n1,n2):
     else:
         print("Please correct the inputed operator")
 
-def next_step(result,n_num):
-
 calculation(oper, num_1, num_2)
