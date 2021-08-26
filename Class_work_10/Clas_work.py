@@ -18,15 +18,17 @@ class new:
             print(file_n)
 
     def read(self, file_n):
-        dict_ = None
         file = open(file_n, "r")
-        dict_ = file.read()
-        pass
+        self.dict = file.read()
+        file.close()
+        print(self.dict)
 
-# obj=new(a=[3,11,23,2,3123,123,12,312,31,23,"adsasd"])
+obj=new(a=[3,11,23,2,3123,123,12,312,31,23,"adsasd"])
 # obj.iter()
 # obj.save("new")
-obj.read()
+obj.read("new")
+
+
 
 
 
