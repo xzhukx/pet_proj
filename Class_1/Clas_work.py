@@ -10,17 +10,17 @@ class new:
             _dict.update({i: i})
         self.dict =_dict
 
-    def save(self):
+    def save(self, file_n):
         if self.dict:
-            file_n = open("new_f", "w")
-            file_n.write(str(self.dict))
-            file_n.close()
+            file = open(file_n, "w")
+            file.write(str(self.dict))
+            file.close()
             print(file_n)
 
 
 obj=new(a=[3,11,23,2,3123,123,12,312,31,23,"adsasd"])
 obj.iter()
-obj.save()
+obj.save("new")
 
 
 
