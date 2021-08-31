@@ -6,11 +6,12 @@ a=requests.get(url)
 soup = bs4.BeautifulSoup(a.text, "lxml")
 
 
-text=soup.find_all("h4")
-urls=soup.find_all("div", class_="row novost")
+text=soup.find_all("h4", style_="margin-left:10px; ")
+urls=soup.find_all("form", class_="choose_new")
 print(urls)
 
-content_list=[]
+# print(urls)
+# content_list=[]
 # print(soup.prettify())
 
 # for i in urls:
