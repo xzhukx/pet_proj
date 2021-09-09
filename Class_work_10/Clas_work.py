@@ -34,7 +34,6 @@ class new:
         wb.save("new.xlsx")
         wb.close()
 
-
 obj=new(a=[3,11,23,2,3123,123,12,312,31,1])
 obj.iter()
 obj.save("new")
