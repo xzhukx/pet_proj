@@ -4,8 +4,6 @@ def factor_dict(num):
     for i in range(1,num+1):
         result = result*i
     dictat.update({i: result})
-    print(dictat)
-    print(result)
     return result
 
 factor_dict(3)
