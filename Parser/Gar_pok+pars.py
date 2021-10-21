@@ -1,23 +1,12 @@
+from bs4 import BeautifulSoup
 import requests
-import bs4
+from selenium import webdriver
+import time
 
-url="https://www.gpee.com.ua/publication?id=1"
-a=requests.get(url)
-soup = bs4.BeautifulSoup(a.text, "lxml")
+soup = BeautifulSoup("https://www.gpee.com.ua/publication?id=1", "lxml")
+print(soup)
 
 
-text=soup.find_all("h4", style_="margin-left:10px; ")
-urls=soup.find_all("form", class_="choose_new")
-print(urls)
 
-# print(urls)
-# content_list=[]
-# print(soup.prettify())
-
-# for i in urls:
-#     a=i.get("href")
-#     print(a)
-#
-# for j in text:
-#     b=j.get_text()
-#     print(b)
+last_heigh=browser.execute_script("https://www.gpee.com.ua/assets/js/news/get_more_news.js?v=82")
+print(last_heigh)
