@@ -3,8 +3,6 @@ import requests as re
 from bs4 import BeautifulSoup
 import csv
 
-
-
 # bot = telebot.TeleBot("2071213971:AAGFlItIZ2doi0p2zD2vRRi3-Px0vR1aw9s", parse_mode=None)
 #
 # @bot.message_handler(commands=['DAM'])
@@ -20,12 +18,8 @@ needed_block = soup.find_all('div', 'col-2 mpage-prices index-block')
 
 for content in needed_block:
     country = content.find("div", "index-country-name")
-    
 
 prices_dict = {}
-
-
-
 
 
 def electr_prices():
@@ -33,10 +27,10 @@ def electr_prices():
         country = content.find("div", "index-country-name")
         price = content.find("span")
         prices_dict.update({country.text: price.text + " EUR"})
+        print(prices_dict)
 
 
-
-# electr_prices()
+electr_prices()
 
 
 
