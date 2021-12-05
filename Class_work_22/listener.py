@@ -16,16 +16,7 @@ with open(_file, "rb") as csv_file:
             data = csv_file.read(1024)
             print('Sending data')
             s.sendall(data)
-            print('Sent data')
+            print(data)
+            print('Data sent ')
             if not data:
                 break
-
-
-
-    # while True:
-    #     msg = input('msg: ')
-    #     # SEND
-    #     s.sendall(msg.encode()+b"f")
-    #     # GET
-    #     data = s.recv(1024)
-    #     print('Received', repr(data))
