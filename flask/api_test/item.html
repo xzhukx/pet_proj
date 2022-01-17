@@ -1,0 +1,162 @@
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 20px 10px;
+        }
+
+        .header a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+        }
+
+        .header a.logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .header a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .header a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .header-right {
+            float: right;
+        }
+
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            .header-right {
+                float: none;
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <!--  Подключаем стили  -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Подключаем библиотеку jquery -> https://jquery.com/ которая в свою очередь помогает создать динамический html   -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <!-- Библиотека для задержки между вводом в -> search -->
+    <script src="https://cdn.jsdelivr.net/npm/underscore@latest/underscore-umd-min.js"></script>
+</head>
+
+<!--Тут можно использовать extends https://flask.palletsprojects.com/en/2.0.x/patterns/templateinheritance/ -->
+<div class="header">
+    <a href="/" class="logo">CompanyLogo</a>
+    <div class="header-right">
+        <a class="active" href="#home">Home</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+    </div>
+</div>
+
+<body>
+    <!-- Отобрадения картинки лучше сюда прикидывать путь к файлу и делать раздачу с статик папки -->
+    <img src="/templates/img/{{item.path_img}}"/>
+    <h1>
+        Name: {{item.name}}
+    </h1>
+    <h1>
+        Description: {{item.description}}
+    </h1>
+    <h1>
+        Price: {{item.price}}
+    </h1>
+    <h1>
+        Vendor: {{item.vendor}}
+    </h1>
+    <h2>
+        <p> Tag:
+        {% for tag in item.tags %}
+            {{ tag.name }} ||
+        {% endfor %}
+        </p>
+    </h2>
+    <!--   Блок для комментов  -->
+    <div id="comments"> </div>
+    <div style="padding-left: 10px; padding-top: 10px;">
+        <textarea id="comment" style="min-height: 55px; max-height: 55px; min-width: 250px; max-width: 250px;">
+        </textarea>
+        <!--   для создания комментов     -->
+        <button id="send">
+            Send
+        </button>
+    </div>
+
+</body>
+
+<script>
+    <!-- старт выполнения js кода   -->
+    let id_item = "{{item.id}}"
+    console.log(id_item)
+
+    $(function(){
+        // Функция для получения комментов
+        var func_get_comments = function () {
+            $.get(`http://localhost:5062/get_comments/${id_item}`, function (data) {
+                console.log(data)
+                let html = ""
+                if (data.length) {
+                    data.forEach(element => {
+
+                    console.log(element)
+                    html += `
+                    <div style="border: solid;">
+                        <p>${element.date_created}</p>
+                        <p>${element.text}</p>
+                    </div>`
+                })
+                }else{
+                    html = `<p> NONE </p>`
+                }
+
+                $('#comments').html(html)
+            })
+        }
+        func_get_comments()
+        // Для отправки используем пост
+        var func = function () {
+            var text = $('#comment').val()
+            $.ajax({
+                type: "POST",
+                url: `http://localhost:5062/send_comment/${id_item}`,
+                contentType : 'application/json',
+                async: false,
+                // Сериализация данных чтобы можно было без проблем прочитать на стороне flask
+                data: JSON.stringify({text:text}),
+                success: function (data) {
+                    func_get_comments()
+                }
+            })
+        }
+        $('#send').on('click', func);
+    })
+</script>

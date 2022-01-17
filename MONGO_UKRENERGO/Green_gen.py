@@ -6,13 +6,6 @@ mydb = myclient["GB_analytics_alternative"]
 mycol = mydb["PSO_tariffs"]
 new_coll = mydb["Monthly_report"]
 
-
-
-# def tariff(file):
-#     PSO_file = pd.read_excel(file, header=0)
-#     dict_data = PSO_file.to_dict(orient="records")
-#     mydb.PSO_tariffs.insert_many(dict_data)
-#
 def monthly_report(file):
     monthly_report = pd.read_excel(file, header=0)
     monthly_report = monthly_report.melt(id_vars=["IPS/BEI", "EIC-W", "ЄДРПОУ", "X", "Назва", "Alias W", "Параметр", "Обсяг"])
